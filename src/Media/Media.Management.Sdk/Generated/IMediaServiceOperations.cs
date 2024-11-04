@@ -24,9 +24,8 @@ namespace Microsoft.Azure.Management.Media
     public partial interface IMediaServiceOperations
     {
         /// <summary>
-        /// Checks whether the Media Service resource name is available. The
+        /// Check whether the Media Service resource name is available. The
         /// name must be globally unique.
-        /// <see href="https://aka.ms/media-manage" />
         /// </summary>
         /// <param name='checkNameAvailabilityInput'>
         /// Properties needed to check the availability of a name.
@@ -46,10 +45,9 @@ namespace Microsoft.Azure.Management.Media
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<AzureOperationResponse<CheckNameAvailabilityOutput>> CheckNameAvailabilityWithHttpMessagesAsync(CheckNameAvailabilityInput checkNameAvailabilityInput, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<CheckNameAvailabilityOutput>> CheckNameAvailabiltyWithHttpMessagesAsync(CheckNameAvailabilityInput checkNameAvailabilityInput, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Lists all of the Media Services in a resource group.
-        /// <see href="https://aka.ms/media-manage" />
+        /// List all of the Media Services in a resource group.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -71,8 +69,7 @@ namespace Microsoft.Azure.Management.Media
         /// </exception>
         Task<AzureOperationResponse<IEnumerable<MediaService>>> ListByResourceGroupWithHttpMessagesAsync(string resourceGroupName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Gets a Media Service.
-        /// <see href="https://aka.ms/media-manage" />
+        /// Get a Media Service.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -97,8 +94,7 @@ namespace Microsoft.Azure.Management.Media
         /// </exception>
         Task<AzureOperationResponse<MediaService>> GetWithHttpMessagesAsync(string resourceGroupName, string mediaServiceName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Creates a Media Service.
-        /// <see href="https://aka.ms/media-manage" />
+        /// Create a Media Service.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -126,8 +122,7 @@ namespace Microsoft.Azure.Management.Media
         /// </exception>
         Task<AzureOperationResponse<MediaService>> CreateWithHttpMessagesAsync(string resourceGroupName, string mediaServiceName, MediaService mediaService, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Deletes a Media Service.
-        /// <see href="https://aka.ms/media-manage" />
+        /// Delete a Media Service.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -149,8 +144,7 @@ namespace Microsoft.Azure.Management.Media
         /// </exception>
         Task<AzureOperationResponse> DeleteWithHttpMessagesAsync(string resourceGroupName, string mediaServiceName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Updates a Media Service.
-        /// <see href="https://aka.ms/media-manage" />
+        /// Update a Media Service.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -178,8 +172,7 @@ namespace Microsoft.Azure.Management.Media
         /// </exception>
         Task<AzureOperationResponse<MediaService>> UpdateWithHttpMessagesAsync(string resourceGroupName, string mediaServiceName, MediaService mediaService, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Regenerates a primary or secondary key for a Media Service.
-        /// <see href="https://aka.ms/media-manage" />
+        /// Regenerate the key for a Media Service.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -207,8 +200,7 @@ namespace Microsoft.Azure.Management.Media
         /// </exception>
         Task<AzureOperationResponse<RegenerateKeyOutput>> RegenerateKeyWithHttpMessagesAsync(string resourceGroupName, string mediaServiceName, RegenerateKeyInput regenerateKeyInput, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Lists the keys for a Media Service.
-        /// <see href="https://aka.ms/media-manage" />
+        /// List the keys for a Media Service.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -233,9 +225,7 @@ namespace Microsoft.Azure.Management.Media
         /// </exception>
         Task<AzureOperationResponse<ServiceKeys>> ListKeysWithHttpMessagesAsync(string resourceGroupName, string mediaServiceName, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
         /// <summary>
-        /// Synchronizes storage account keys for a storage account associated
-        /// with the Media Service account.
-        /// <see href="https://aka.ms/media-manage" />
+        /// Synchronize the keys for a storage account to the Media Service.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -244,7 +234,7 @@ namespace Microsoft.Azure.Management.Media
         /// Name of the Media Service.
         /// </param>
         /// <param name='syncStorageKeysInput'>
-        /// Properties needed to synchronize the keys for a storage account to
+        /// Properties needed to sycnronize the keys for a storage account to
         /// the Media Service.
         /// </param>
         /// <param name='customHeaders'>
@@ -256,9 +246,12 @@ namespace Microsoft.Azure.Management.Media
         /// <exception cref="ApiErrorException">
         /// Thrown when the operation returned an invalid status code
         /// </exception>
+        /// <exception cref="Microsoft.Rest.SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
         /// <exception cref="Microsoft.Rest.ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
-        Task<AzureOperationResponse> SyncStorageKeysWithHttpMessagesAsync(string resourceGroupName, string mediaServiceName, SyncStorageKeysInput syncStorageKeysInput, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
+        Task<AzureOperationResponse<MediaService>> SyncStorageKeysWithHttpMessagesAsync(string resourceGroupName, string mediaServiceName, SyncStorageKeysInput syncStorageKeysInput, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken));
     }
 }

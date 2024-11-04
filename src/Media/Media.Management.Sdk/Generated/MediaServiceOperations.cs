@@ -51,9 +51,8 @@ namespace Microsoft.Azure.Management.Media
         public MediaServicesManagementClient Client { get; private set; }
 
         /// <summary>
-        /// Checks whether the Media Service resource name is available. The name must
+        /// Check whether the Media Service resource name is available. The name must
         /// be globally unique.
-        /// <see href="https://aka.ms/media-manage" />
         /// </summary>
         /// <param name='checkNameAvailabilityInput'>
         /// Properties needed to check the availability of a name.
@@ -79,7 +78,7 @@ namespace Microsoft.Azure.Management.Media
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<AzureOperationResponse<CheckNameAvailabilityOutput>> CheckNameAvailabilityWithHttpMessagesAsync(CheckNameAvailabilityInput checkNameAvailabilityInput, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<CheckNameAvailabilityOutput>> CheckNameAvailabiltyWithHttpMessagesAsync(CheckNameAvailabilityInput checkNameAvailabilityInput, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Client.SubscriptionId == null)
             {
@@ -106,7 +105,7 @@ namespace Microsoft.Azure.Management.Media
                 Dictionary<string, object> tracingParameters = new Dictionary<string, object>();
                 tracingParameters.Add("checkNameAvailabilityInput", checkNameAvailabilityInput);
                 tracingParameters.Add("cancellationToken", cancellationToken);
-                ServiceClientTracing.Enter(_invocationId, this, "CheckNameAvailability", tracingParameters);
+                ServiceClientTracing.Enter(_invocationId, this, "CheckNameAvailabilty", tracingParameters);
             }
             // Construct URL
             var _baseUrl = Client.BaseUri.AbsoluteUri;
@@ -244,8 +243,7 @@ namespace Microsoft.Azure.Management.Media
         }
 
         /// <summary>
-        /// Lists all of the Media Services in a resource group.
-        /// <see href="https://aka.ms/media-manage" />
+        /// List all of the Media Services in a resource group.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -427,8 +425,7 @@ namespace Microsoft.Azure.Management.Media
         }
 
         /// <summary>
-        /// Gets a Media Service.
-        /// <see href="https://aka.ms/media-manage" />
+        /// Get a Media Service.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -634,8 +631,7 @@ namespace Microsoft.Azure.Management.Media
         }
 
         /// <summary>
-        /// Creates a Media Service.
-        /// <see href="https://aka.ms/media-manage" />
+        /// Create a Media Service.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -703,6 +699,10 @@ namespace Microsoft.Azure.Management.Media
             if (mediaService == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "mediaService");
+            }
+            if (mediaService != null)
+            {
+                mediaService.Validate();
             }
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -792,7 +792,7 @@ namespace Microsoft.Azure.Management.Media
             HttpStatusCode _statusCode = _httpResponse.StatusCode;
             cancellationToken.ThrowIfCancellationRequested();
             string _responseContent = null;
-            if ((int)_statusCode != 201)
+            if ((int)_statusCode != 200 && (int)_statusCode != 201)
             {
                 var ex = new ApiErrorException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
                 try
@@ -830,6 +830,24 @@ namespace Microsoft.Azure.Management.Media
                 _result.RequestId = _httpResponse.Headers.GetValues("x-ms-request-id").FirstOrDefault();
             }
             // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = Rest.Serialization.SafeJsonConvert.DeserializeObject<MediaService>(_responseContent, Client.DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
+            }
+            // Deserialize Response
             if ((int)_statusCode == 201)
             {
                 _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
@@ -855,8 +873,7 @@ namespace Microsoft.Azure.Management.Media
         }
 
         /// <summary>
-        /// Deletes a Media Service.
-        /// <see href="https://aka.ms/media-manage" />
+        /// Delete a Media Service.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -996,7 +1013,7 @@ namespace Microsoft.Azure.Management.Media
             HttpStatusCode _statusCode = _httpResponse.StatusCode;
             cancellationToken.ThrowIfCancellationRequested();
             string _responseContent = null;
-            if ((int)_statusCode != 200 && (int)_statusCode != 204)
+            if ((int)_statusCode != 200)
             {
                 var ex = new ApiErrorException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
                 try
@@ -1041,8 +1058,7 @@ namespace Microsoft.Azure.Management.Media
         }
 
         /// <summary>
-        /// Updates a Media Service.
-        /// <see href="https://aka.ms/media-manage" />
+        /// Update a Media Service.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -1262,8 +1278,7 @@ namespace Microsoft.Azure.Management.Media
         }
 
         /// <summary>
-        /// Regenerates a primary or secondary key for a Media Service.
-        /// <see href="https://aka.ms/media-manage" />
+        /// Regenerate the key for a Media Service.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -1331,10 +1346,6 @@ namespace Microsoft.Azure.Management.Media
             if (regenerateKeyInput == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "regenerateKeyInput");
-            }
-            if (regenerateKeyInput != null)
-            {
-                regenerateKeyInput.Validate();
             }
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -1424,7 +1435,7 @@ namespace Microsoft.Azure.Management.Media
             HttpStatusCode _statusCode = _httpResponse.StatusCode;
             cancellationToken.ThrowIfCancellationRequested();
             string _responseContent = null;
-            if ((int)_statusCode != 200)
+            if ((int)_statusCode != 200 && (int)_statusCode != 202)
             {
                 var ex = new ApiErrorException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
                 try
@@ -1487,8 +1498,7 @@ namespace Microsoft.Azure.Management.Media
         }
 
         /// <summary>
-        /// Lists the keys for a Media Service.
-        /// <see href="https://aka.ms/media-manage" />
+        /// List the keys for a Media Service.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -1631,7 +1641,7 @@ namespace Microsoft.Azure.Management.Media
             HttpStatusCode _statusCode = _httpResponse.StatusCode;
             cancellationToken.ThrowIfCancellationRequested();
             string _responseContent = null;
-            if ((int)_statusCode != 200)
+            if ((int)_statusCode != 200 && (int)_statusCode != 202)
             {
                 var ex = new ApiErrorException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
                 try
@@ -1694,9 +1704,7 @@ namespace Microsoft.Azure.Management.Media
         }
 
         /// <summary>
-        /// Synchronizes storage account keys for a storage account associated with the
-        /// Media Service account.
-        /// <see href="https://aka.ms/media-manage" />
+        /// Synchronize the keys for a storage account to the Media Service.
         /// </summary>
         /// <param name='resourceGroupName'>
         /// Name of the resource group within the Azure subscription.
@@ -1705,8 +1713,8 @@ namespace Microsoft.Azure.Management.Media
         /// Name of the Media Service.
         /// </param>
         /// <param name='syncStorageKeysInput'>
-        /// Properties needed to synchronize the keys for a storage account to the
-        /// Media Service.
+        /// Properties needed to sycnronize the keys for a storage account to the Media
+        /// Service.
         /// </param>
         /// <param name='customHeaders'>
         /// Headers that will be added to request.
@@ -1717,6 +1725,9 @@ namespace Microsoft.Azure.Management.Media
         /// <exception cref="ApiErrorException">
         /// Thrown when the operation returned an invalid status code
         /// </exception>
+        /// <exception cref="SerializationException">
+        /// Thrown when unable to deserialize the response
+        /// </exception>
         /// <exception cref="ValidationException">
         /// Thrown when a required parameter is null
         /// </exception>
@@ -1726,7 +1737,7 @@ namespace Microsoft.Azure.Management.Media
         /// <return>
         /// A response object containing the response body and response headers.
         /// </return>
-        public async Task<AzureOperationResponse> SyncStorageKeysWithHttpMessagesAsync(string resourceGroupName, string mediaServiceName, SyncStorageKeysInput syncStorageKeysInput, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
+        public async Task<AzureOperationResponse<MediaService>> SyncStorageKeysWithHttpMessagesAsync(string resourceGroupName, string mediaServiceName, SyncStorageKeysInput syncStorageKeysInput, Dictionary<string, List<string>> customHeaders = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             if (Client.SubscriptionId == null)
             {
@@ -1762,10 +1773,6 @@ namespace Microsoft.Azure.Management.Media
             if (syncStorageKeysInput == null)
             {
                 throw new ValidationException(ValidationRules.CannotBeNull, "syncStorageKeysInput");
-            }
-            if (syncStorageKeysInput != null)
-            {
-                syncStorageKeysInput.Validate();
             }
             // Tracing
             bool _shouldTrace = ServiceClientTracing.IsEnabled;
@@ -1855,7 +1862,7 @@ namespace Microsoft.Azure.Management.Media
             HttpStatusCode _statusCode = _httpResponse.StatusCode;
             cancellationToken.ThrowIfCancellationRequested();
             string _responseContent = null;
-            if ((int)_statusCode != 200)
+            if ((int)_statusCode != 200 && (int)_statusCode != 202)
             {
                 var ex = new ApiErrorException(string.Format("Operation returned an invalid status code '{0}'", _statusCode));
                 try
@@ -1885,12 +1892,30 @@ namespace Microsoft.Azure.Management.Media
                 throw ex;
             }
             // Create Result
-            var _result = new AzureOperationResponse();
+            var _result = new AzureOperationResponse<MediaService>();
             _result.Request = _httpRequest;
             _result.Response = _httpResponse;
             if (_httpResponse.Headers.Contains("x-ms-request-id"))
             {
                 _result.RequestId = _httpResponse.Headers.GetValues("x-ms-request-id").FirstOrDefault();
+            }
+            // Deserialize Response
+            if ((int)_statusCode == 200)
+            {
+                _responseContent = await _httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+                try
+                {
+                    _result.Body = Rest.Serialization.SafeJsonConvert.DeserializeObject<MediaService>(_responseContent, Client.DeserializationSettings);
+                }
+                catch (JsonException ex)
+                {
+                    _httpRequest.Dispose();
+                    if (_httpResponse != null)
+                    {
+                        _httpResponse.Dispose();
+                    }
+                    throw new SerializationException("Unable to deserialize the response.", _responseContent, ex);
+                }
             }
             if (_shouldTrace)
             {

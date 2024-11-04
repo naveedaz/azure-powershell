@@ -10,7 +10,6 @@
 
 namespace Microsoft.Azure.Management.Media.Models
 {
-    using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Linq;
 
@@ -31,7 +30,7 @@ namespace Microsoft.Azure.Management.Media.Models
         /// Initializes a new instance of the SyncStorageKeysInput class.
         /// </summary>
         /// <param name="id">The id of the storage account resource.</param>
-        public SyncStorageKeysInput(string id)
+        public SyncStorageKeysInput(string id = default(string))
         {
             Id = id;
             CustomInit();
@@ -48,18 +47,5 @@ namespace Microsoft.Azure.Management.Media.Models
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
-        /// <summary>
-        /// Validate the object.
-        /// </summary>
-        /// <exception cref="ValidationException">
-        /// Thrown if validation fails
-        /// </exception>
-        public virtual void Validate()
-        {
-            if (Id == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Id");
-            }
-        }
     }
 }

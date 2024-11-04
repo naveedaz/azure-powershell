@@ -13,13 +13,8 @@ namespace Microsoft.Azure.Management.Media.Models
     using Microsoft.Rest;
     using Microsoft.Rest.Azure;
     using Newtonsoft.Json;
-    using System.Collections;
-    using System.Collections.Generic;
     using System.Linq;
 
-    /// <summary>
-    /// The Azure Resource Manager resource.
-    /// </summary>
     public partial class Resource : IResource
     {
         /// <summary>
@@ -36,19 +31,11 @@ namespace Microsoft.Azure.Management.Media.Models
         /// <param name="id">The id of the resource.</param>
         /// <param name="name">The name of the resource.</param>
         /// <param name="type">The type of the resource</param>
-        /// <param name="location">The geographic location of the resource.
-        /// This must be one of the supported and registered Azure Geo Regions
-        /// (for example, West US, East US, Southeast Asia, and so
-        /// forth).</param>
-        /// <param name="tags">Tags to help categorize the resource in the
-        /// Azure portal.</param>
-        public Resource(string id = default(string), string name = default(string), string type = default(string), string location = default(string), IDictionary<string, string> tags = default(IDictionary<string, string>))
+        public Resource(string id = default(string), string name = default(string), string type = default(string))
         {
             Id = id;
             Name = name;
             Type = type;
-            Location = location;
-            Tags = tags;
             CustomInit();
         }
 
@@ -74,21 +61,6 @@ namespace Microsoft.Azure.Management.Media.Models
         /// </summary>
         [JsonProperty(PropertyName = "type")]
         public string Type { get; private set; }
-
-        /// <summary>
-        /// Gets or sets the geographic location of the resource. This must be
-        /// one of the supported and registered Azure Geo Regions (for example,
-        /// West US, East US, Southeast Asia, and so forth).
-        /// </summary>
-        [JsonProperty(PropertyName = "location")]
-        public string Location { get; set; }
-
-        /// <summary>
-        /// Gets or sets tags to help categorize the resource in the Azure
-        /// portal.
-        /// </summary>
-        [JsonProperty(PropertyName = "tags")]
-        public IDictionary<string, string> Tags { get; set; }
 
     }
 }

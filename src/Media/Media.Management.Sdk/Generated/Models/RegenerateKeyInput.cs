@@ -32,7 +32,7 @@ namespace Microsoft.Azure.Management.Media.Models
         /// <param name="keyType">The keyType indicating which key you want to
         /// regenerate, Primary or Secondary. Possible values include:
         /// 'Primary', 'Secondary'</param>
-        public RegenerateKeyInput(KeyType keyType)
+        public RegenerateKeyInput(KeyType? keyType = default(KeyType?))
         {
             KeyType = keyType;
             CustomInit();
@@ -49,16 +49,7 @@ namespace Microsoft.Azure.Management.Media.Models
         /// 'Primary', 'Secondary'
         /// </summary>
         [JsonProperty(PropertyName = "keyType")]
-        public KeyType KeyType { get; set; }
+        public KeyType? KeyType { get; set; }
 
-        /// <summary>
-        /// Validate the object.
-        /// </summary>
-        /// <exception cref="Rest.ValidationException">
-        /// Thrown if validation fails
-        /// </exception>
-        public virtual void Validate()
-        {
-        }
     }
 }

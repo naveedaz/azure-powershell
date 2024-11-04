@@ -32,17 +32,12 @@ namespace Microsoft.Azure.Management.Media.Models
         /// </summary>
         /// <param name="name">The name of the resource. A name must be
         /// globally unique.</param>
-        public CheckNameAvailabilityInput(string name)
+        /// <param name="type">Specifies the type of the resource.</param>
+        public CheckNameAvailabilityInput(string name = default(string), string type = default(string))
         {
             Name = name;
+            Type = type;
             CustomInit();
-        }
-        /// <summary>
-        /// Static constructor for CheckNameAvailabilityInput class.
-        /// </summary>
-        static CheckNameAvailabilityInput()
-        {
-            Type = "mediaservices";
         }
 
         /// <summary>
@@ -58,10 +53,10 @@ namespace Microsoft.Azure.Management.Media.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// The type of the resource - mediaservices.
+        /// Gets or sets specifies the type of the resource.
         /// </summary>
         [JsonProperty(PropertyName = "type")]
-        public static string Type { get; private set; }
+        public string Type { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -71,10 +66,6 @@ namespace Microsoft.Azure.Management.Media.Models
         /// </exception>
         public virtual void Validate()
         {
-            if (Name == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Name");
-            }
             if (Name != null)
             {
                 if (Name.Length > 24)

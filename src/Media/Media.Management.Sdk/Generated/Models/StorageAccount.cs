@@ -10,7 +10,6 @@
 
 namespace Microsoft.Azure.Management.Media.Models
 {
-    using Microsoft.Rest;
     using Newtonsoft.Json;
     using System.Linq;
 
@@ -30,16 +29,10 @@ namespace Microsoft.Azure.Management.Media.Models
         /// <summary>
         /// Initializes a new instance of the StorageAccount class.
         /// </summary>
-        /// <param name="id">The id of the storage account resource. Media
-        /// Services relies on tables and queues as well as blobs, so the
-        /// primary storage account must be a Standard Storage account (either
-        /// Microsoft.ClassicStorage or Microsoft.Storage). Blob only storage
-        /// accounts can be added as secondary storage accounts (isPrimary
-        /// false).</param>
+        /// <param name="id">The id of the storage account resource.</param>
         /// <param name="isPrimary">Is this storage account resource the
-        /// primary storage account for the Media Service resource. Blob only
-        /// storage must set this to false.</param>
-        public StorageAccount(string id, bool isPrimary)
+        /// primary storage account for the Media Service resource.</param>
+        public StorageAccount(string id = default(string), bool? isPrimary = default(bool?))
         {
             Id = id;
             IsPrimary = isPrimary;
@@ -52,36 +45,17 @@ namespace Microsoft.Azure.Management.Media.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets the id of the storage account resource. Media Services
-        /// relies on tables and queues as well as blobs, so the primary
-        /// storage account must be a Standard Storage account (either
-        /// Microsoft.ClassicStorage or Microsoft.Storage). Blob only storage
-        /// accounts can be added as secondary storage accounts (isPrimary
-        /// false).
+        /// Gets or sets the id of the storage account resource.
         /// </summary>
         [JsonProperty(PropertyName = "id")]
         public string Id { get; set; }
 
         /// <summary>
         /// Gets or sets is this storage account resource the primary storage
-        /// account for the Media Service resource. Blob only storage must set
-        /// this to false.
+        /// account for the Media Service resource.
         /// </summary>
         [JsonProperty(PropertyName = "isPrimary")]
-        public bool IsPrimary { get; set; }
+        public bool? IsPrimary { get; set; }
 
-        /// <summary>
-        /// Validate the object.
-        /// </summary>
-        /// <exception cref="ValidationException">
-        /// Thrown if validation fails
-        /// </exception>
-        public virtual void Validate()
-        {
-            if (Id == null)
-            {
-                throw new ValidationException(ValidationRules.CannotBeNull, "Id");
-            }
-        }
     }
 }

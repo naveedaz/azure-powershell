@@ -24,9 +24,8 @@ namespace Microsoft.Azure.Management.Media
     public static partial class MediaServiceOperationsExtensions
     {
             /// <summary>
-            /// Checks whether the Media Service resource name is available. The name must
+            /// Check whether the Media Service resource name is available. The name must
             /// be globally unique.
-            /// <see href="https://aka.ms/media-manage" />
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -34,15 +33,14 @@ namespace Microsoft.Azure.Management.Media
             /// <param name='checkNameAvailabilityInput'>
             /// Properties needed to check the availability of a name.
             /// </param>
-            public static CheckNameAvailabilityOutput CheckNameAvailability(this IMediaServiceOperations operations, CheckNameAvailabilityInput checkNameAvailabilityInput)
+            public static CheckNameAvailabilityOutput CheckNameAvailabilty(this IMediaServiceOperations operations, CheckNameAvailabilityInput checkNameAvailabilityInput)
             {
-                return operations.CheckNameAvailabilityAsync(checkNameAvailabilityInput).GetAwaiter().GetResult();
+                return operations.CheckNameAvailabiltyAsync(checkNameAvailabilityInput).GetAwaiter().GetResult();
             }
 
             /// <summary>
-            /// Checks whether the Media Service resource name is available. The name must
+            /// Check whether the Media Service resource name is available. The name must
             /// be globally unique.
-            /// <see href="https://aka.ms/media-manage" />
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -53,17 +51,16 @@ namespace Microsoft.Azure.Management.Media
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task<CheckNameAvailabilityOutput> CheckNameAvailabilityAsync(this IMediaServiceOperations operations, CheckNameAvailabilityInput checkNameAvailabilityInput, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<CheckNameAvailabilityOutput> CheckNameAvailabiltyAsync(this IMediaServiceOperations operations, CheckNameAvailabilityInput checkNameAvailabilityInput, CancellationToken cancellationToken = default(CancellationToken))
             {
-                using (var _result = await operations.CheckNameAvailabilityWithHttpMessagesAsync(checkNameAvailabilityInput, null, cancellationToken).ConfigureAwait(false))
+                using (var _result = await operations.CheckNameAvailabiltyWithHttpMessagesAsync(checkNameAvailabilityInput, null, cancellationToken).ConfigureAwait(false))
                 {
                     return _result.Body;
                 }
             }
 
             /// <summary>
-            /// Lists all of the Media Services in a resource group.
-            /// <see href="https://aka.ms/media-manage" />
+            /// List all of the Media Services in a resource group.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -77,8 +74,7 @@ namespace Microsoft.Azure.Management.Media
             }
 
             /// <summary>
-            /// Lists all of the Media Services in a resource group.
-            /// <see href="https://aka.ms/media-manage" />
+            /// List all of the Media Services in a resource group.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -98,8 +94,7 @@ namespace Microsoft.Azure.Management.Media
             }
 
             /// <summary>
-            /// Gets a Media Service.
-            /// <see href="https://aka.ms/media-manage" />
+            /// Get a Media Service.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -116,8 +111,7 @@ namespace Microsoft.Azure.Management.Media
             }
 
             /// <summary>
-            /// Gets a Media Service.
-            /// <see href="https://aka.ms/media-manage" />
+            /// Get a Media Service.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -140,8 +134,7 @@ namespace Microsoft.Azure.Management.Media
             }
 
             /// <summary>
-            /// Creates a Media Service.
-            /// <see href="https://aka.ms/media-manage" />
+            /// Create a Media Service.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -161,8 +154,7 @@ namespace Microsoft.Azure.Management.Media
             }
 
             /// <summary>
-            /// Creates a Media Service.
-            /// <see href="https://aka.ms/media-manage" />
+            /// Create a Media Service.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -188,8 +180,7 @@ namespace Microsoft.Azure.Management.Media
             }
 
             /// <summary>
-            /// Deletes a Media Service.
-            /// <see href="https://aka.ms/media-manage" />
+            /// Delete a Media Service.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -206,8 +197,7 @@ namespace Microsoft.Azure.Management.Media
             }
 
             /// <summary>
-            /// Deletes a Media Service.
-            /// <see href="https://aka.ms/media-manage" />
+            /// Delete a Media Service.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -227,8 +217,7 @@ namespace Microsoft.Azure.Management.Media
             }
 
             /// <summary>
-            /// Updates a Media Service.
-            /// <see href="https://aka.ms/media-manage" />
+            /// Update a Media Service.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -248,8 +237,7 @@ namespace Microsoft.Azure.Management.Media
             }
 
             /// <summary>
-            /// Updates a Media Service.
-            /// <see href="https://aka.ms/media-manage" />
+            /// Update a Media Service.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -275,8 +263,7 @@ namespace Microsoft.Azure.Management.Media
             }
 
             /// <summary>
-            /// Regenerates a primary or secondary key for a Media Service.
-            /// <see href="https://aka.ms/media-manage" />
+            /// Regenerate the key for a Media Service.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -296,8 +283,7 @@ namespace Microsoft.Azure.Management.Media
             }
 
             /// <summary>
-            /// Regenerates a primary or secondary key for a Media Service.
-            /// <see href="https://aka.ms/media-manage" />
+            /// Regenerate the key for a Media Service.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -323,8 +309,7 @@ namespace Microsoft.Azure.Management.Media
             }
 
             /// <summary>
-            /// Lists the keys for a Media Service.
-            /// <see href="https://aka.ms/media-manage" />
+            /// List the keys for a Media Service.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -341,8 +326,7 @@ namespace Microsoft.Azure.Management.Media
             }
 
             /// <summary>
-            /// Lists the keys for a Media Service.
-            /// <see href="https://aka.ms/media-manage" />
+            /// List the keys for a Media Service.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -365,9 +349,7 @@ namespace Microsoft.Azure.Management.Media
             }
 
             /// <summary>
-            /// Synchronizes storage account keys for a storage account associated with the
-            /// Media Service account.
-            /// <see href="https://aka.ms/media-manage" />
+            /// Synchronize the keys for a storage account to the Media Service.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -379,18 +361,16 @@ namespace Microsoft.Azure.Management.Media
             /// Name of the Media Service.
             /// </param>
             /// <param name='syncStorageKeysInput'>
-            /// Properties needed to synchronize the keys for a storage account to the
-            /// Media Service.
+            /// Properties needed to sycnronize the keys for a storage account to the Media
+            /// Service.
             /// </param>
-            public static void SyncStorageKeys(this IMediaServiceOperations operations, string resourceGroupName, string mediaServiceName, SyncStorageKeysInput syncStorageKeysInput)
+            public static MediaService SyncStorageKeys(this IMediaServiceOperations operations, string resourceGroupName, string mediaServiceName, SyncStorageKeysInput syncStorageKeysInput)
             {
-                operations.SyncStorageKeysAsync(resourceGroupName, mediaServiceName, syncStorageKeysInput).GetAwaiter().GetResult();
+                return operations.SyncStorageKeysAsync(resourceGroupName, mediaServiceName, syncStorageKeysInput).GetAwaiter().GetResult();
             }
 
             /// <summary>
-            /// Synchronizes storage account keys for a storage account associated with the
-            /// Media Service account.
-            /// <see href="https://aka.ms/media-manage" />
+            /// Synchronize the keys for a storage account to the Media Service.
             /// </summary>
             /// <param name='operations'>
             /// The operations group for this extension method.
@@ -402,15 +382,18 @@ namespace Microsoft.Azure.Management.Media
             /// Name of the Media Service.
             /// </param>
             /// <param name='syncStorageKeysInput'>
-            /// Properties needed to synchronize the keys for a storage account to the
-            /// Media Service.
+            /// Properties needed to sycnronize the keys for a storage account to the Media
+            /// Service.
             /// </param>
             /// <param name='cancellationToken'>
             /// The cancellation token.
             /// </param>
-            public static async Task SyncStorageKeysAsync(this IMediaServiceOperations operations, string resourceGroupName, string mediaServiceName, SyncStorageKeysInput syncStorageKeysInput, CancellationToken cancellationToken = default(CancellationToken))
+            public static async Task<MediaService> SyncStorageKeysAsync(this IMediaServiceOperations operations, string resourceGroupName, string mediaServiceName, SyncStorageKeysInput syncStorageKeysInput, CancellationToken cancellationToken = default(CancellationToken))
             {
-                (await operations.SyncStorageKeysWithHttpMessagesAsync(resourceGroupName, mediaServiceName, syncStorageKeysInput, null, cancellationToken).ConfigureAwait(false)).Dispose();
+                using (var _result = await operations.SyncStorageKeysWithHttpMessagesAsync(resourceGroupName, mediaServiceName, syncStorageKeysInput, null, cancellationToken).ConfigureAwait(false))
+                {
+                    return _result.Body;
+                }
             }
 
     }

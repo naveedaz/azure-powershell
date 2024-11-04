@@ -24,9 +24,9 @@ license-header: MICROSOFT_MIT_NO_VERSION
 
 ###
 ``` yaml
-commit: 087554c4480e144f715fe92f97621ff5603cd907
+commit: 3586e2989d502434c4f607dd38d40e46aabede5c
 input-file:
-  - https://github.com/Azure/azure-rest-api-specs/blob/$(commit)/specification/mediaservices/resource-manager/Microsoft.Media/2015-10-01/media.json
+  - https://github.com/Azure/azure-rest-api-specs/blob/$(commit)/arm-mediaservices/2015-10-01/swagger/media.json
 
 output-folder: Generated
 

@@ -29,14 +29,12 @@ namespace Microsoft.Azure.Management.Media.Models
         /// <summary>
         /// Initializes a new instance of the ServiceKeys class.
         /// </summary>
-        /// <param name="primaryAuthEndpoint">The primary authorization
+        /// <param name="primaryAuthEndpoint">The primary Authorization
         /// endpoint.</param>
-        /// <param name="secondaryAuthEndpoint">The secondary authorization
+        /// <param name="secondaryAuthEndpoint">The secondary Authorization
         /// endpoint.</param>
-        /// <param name="primaryKey">The primary key for the Media Service
-        /// resource.</param>
-        /// <param name="secondaryKey">The secondary key for the Media Service
-        /// resource.</param>
+        /// <param name="primaryKey">The primary resource.</param>
+        /// <param name="secondaryKey">The secondary resource.</param>
         /// <param name="scope">The authorization scope.</param>
         public ServiceKeys(string primaryAuthEndpoint = default(string), string secondaryAuthEndpoint = default(string), string primaryKey = default(string), string secondaryKey = default(string), string scope = default(string))
         {
@@ -54,25 +52,25 @@ namespace Microsoft.Azure.Management.Media.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets the primary authorization endpoint.
+        /// Gets or sets the primary Authorization endpoint.
         /// </summary>
         [JsonProperty(PropertyName = "primaryAuthEndpoint")]
         public string PrimaryAuthEndpoint { get; set; }
 
         /// <summary>
-        /// Gets or sets the secondary authorization endpoint.
+        /// Gets or sets the secondary Authorization endpoint.
         /// </summary>
         [JsonProperty(PropertyName = "secondaryAuthEndpoint")]
         public string SecondaryAuthEndpoint { get; set; }
 
         /// <summary>
-        /// Gets or sets the primary key for the Media Service resource.
+        /// Gets or sets the primary resource.
         /// </summary>
         [JsonProperty(PropertyName = "primaryKey")]
         public string PrimaryKey { get; set; }
 
         /// <summary>
-        /// Gets or sets the secondary key for the Media Service resource.
+        /// Gets or sets the secondary resource.
         /// </summary>
         [JsonProperty(PropertyName = "secondaryKey")]
         public string SecondaryKey { get; set; }

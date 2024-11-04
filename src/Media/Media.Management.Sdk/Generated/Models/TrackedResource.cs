@@ -11,43 +11,37 @@
 namespace Microsoft.Azure.Management.Media.Models
 {
     using Microsoft.Rest;
-    using Microsoft.Rest.Serialization;
     using Newtonsoft.Json;
     using System.Collections;
     using System.Collections.Generic;
     using System.Linq;
 
     /// <summary>
-    /// The properties of a Media Service resource.
+    /// ARM tracked resource
     /// </summary>
-    [Rest.Serialization.JsonTransformation]
-    public partial class MediaService : TrackedResource
+    public partial class TrackedResource : Resource
     {
         /// <summary>
-        /// Initializes a new instance of the MediaService class.
+        /// Initializes a new instance of the TrackedResource class.
         /// </summary>
-        public MediaService()
+        public TrackedResource()
         {
             CustomInit();
         }
 
         /// <summary>
-        /// Initializes a new instance of the MediaService class.
+        /// Initializes a new instance of the TrackedResource class.
         /// </summary>
         /// <param name="location">The location of the resource.</param>
         /// <param name="tags">The tags of the resource.</param>
         /// <param name="id">The id of the resource.</param>
         /// <param name="name">The name of the resource.</param>
         /// <param name="type">The type of the resource</param>
-        /// <param name="apiEndpoints">The Media Services REST API endpoints
-        /// for this resource.</param>
-        /// <param name="storageAccounts">The storage accounts for this
-        /// resource.</param>
-        public MediaService(string location, IDictionary<string, string> tags, string id = default(string), string name = default(string), string type = default(string), IList<ApiEndpoint> apiEndpoints = default(IList<ApiEndpoint>), IList<StorageAccount> storageAccounts = default(IList<StorageAccount>))
-            : base(location, tags, id, name, type)
+        public TrackedResource(string location, IDictionary<string, string> tags, string id = default(string), string name = default(string), string type = default(string))
+            : base(id, name, type)
         {
-            ApiEndpoints = apiEndpoints;
-            StorageAccounts = storageAccounts;
+            Location = location;
+            Tags = tags;
             CustomInit();
         }
 
@@ -57,17 +51,16 @@ namespace Microsoft.Azure.Management.Media.Models
         partial void CustomInit();
 
         /// <summary>
-        /// Gets or sets the Media Services REST API endpoints for this
-        /// resource.
+        /// Gets or sets the location of the resource.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.apiEndpoints")]
-        public IList<ApiEndpoint> ApiEndpoints { get; set; }
+        [JsonProperty(PropertyName = "location")]
+        public string Location { get; set; }
 
         /// <summary>
-        /// Gets or sets the storage accounts for this resource.
+        /// Gets or sets the tags of the resource.
         /// </summary>
-        [JsonProperty(PropertyName = "properties.storageAccounts")]
-        public IList<StorageAccount> StorageAccounts { get; set; }
+        [JsonProperty(PropertyName = "tags")]
+        public IDictionary<string, string> Tags { get; set; }
 
         /// <summary>
         /// Validate the object.
@@ -75,9 +68,16 @@ namespace Microsoft.Azure.Management.Media.Models
         /// <exception cref="ValidationException">
         /// Thrown if validation fails
         /// </exception>
-        public override void Validate()
+        public virtual void Validate()
         {
-            base.Validate();
+            if (Location == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Location");
+            }
+            if (Tags == null)
+            {
+                throw new ValidationException(ValidationRules.CannotBeNull, "Tags");
+            }
         }
     }
 }

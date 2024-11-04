@@ -41,7 +41,7 @@ namespace Microsoft.Azure.Management.Media
         ServiceClientCredentials Credentials { get; }
 
         /// <summary>
-        /// The unique identifier for a Microsoft Azure subscription.
+        /// Azure subscription id.
         /// </summary>
         string SubscriptionId { get; set; }
 

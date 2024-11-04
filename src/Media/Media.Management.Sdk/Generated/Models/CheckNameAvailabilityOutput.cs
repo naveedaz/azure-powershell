@@ -54,21 +54,21 @@ namespace Microsoft.Azure.Management.Media.Models
         /// <summary>
         /// Gets or sets specifies if the name is available.
         /// </summary>
-        [JsonProperty(PropertyName = "NameAvailable")]
+        [JsonProperty(PropertyName = "nameAvailable")]
         public bool? NameAvailable { get; set; }
 
         /// <summary>
         /// Gets or sets specifies the reason if the name is not available.
         /// Possible values include: 'None', 'Invalid', 'AlreadyExists'
         /// </summary>
-        [JsonProperty(PropertyName = "Reason")]
+        [JsonProperty(PropertyName = "reason")]
         public EntityNameUnavailabilityReason? Reason { get; set; }
 
         /// <summary>
         /// Gets or sets specifies the detailed reason if the name is not
         /// available.
         /// </summary>
-        [JsonProperty(PropertyName = "Message")]
+        [JsonProperty(PropertyName = "message")]
         public string Message { get; set; }
 
     }
