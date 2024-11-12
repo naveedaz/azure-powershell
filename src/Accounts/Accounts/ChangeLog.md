@@ -19,6 +19,7 @@
 -->
 
 ## Upcoming Release
+* Fixed an issue that cmdlets may report warnings of "KeyNotFoundException" #26624
 * Updated the `Get-AzAccessToken` breaking change warning message.
 * Added Long Running Operation Support for Invoke-AzRest command.
 
